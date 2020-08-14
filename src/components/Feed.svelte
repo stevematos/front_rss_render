@@ -6,6 +6,7 @@
     export let published;
     export let image;
     export let author;
+    export let link;
 
     let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
@@ -25,6 +26,9 @@
                 {/if}
                 <p>{@html summary}</p>
                 <p>{date_published}</p>
+                {#if link}
+                    <a href={link} target="_blank">... ver más</a>
+                {/if}
             </div>
         </Col>
     </Row>
