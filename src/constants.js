@@ -1,7 +1,7 @@
-export var CONFIG = {
+export const CONFIG = {
     urlApi: 'http://0.0.0.0:8000',
 }
-export var queries = {
+export const queries = {
     login: (email, password) => `{
           login(email: "${email}",password:"${password}")
      }`,
@@ -10,29 +10,30 @@ export var queries = {
 				userId: ${user}
 			){
                 title
-                urlRss
+                id
             }
     }`,
-    feed: (urlRss) => `{
+    feed: (rssId) => `{
         feed(
-            url: "${urlRss}"
+            rssId: ${rssId}
         ) {
             title
             summary
             published
             image
             author
+            link
         }
     }`
 }
 
-export var mutations = {
+export const mutations = {
     subscribeFeed: (url, user, title) => `mutation {
           SubscribeFeed(
             urlFeed: "${url}",
             userId: ${user},
             title:"${title}"){
-            idFeed
+            idRss
           }
     }`,
     createUser: (email, password) => `mutation {

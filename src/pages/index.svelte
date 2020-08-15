@@ -8,15 +8,17 @@
 
     let url = ""
     let title = ""
+    let isLoading = false
 
     const handleSubscriptFeed = () => {
+        isLoading = true
         axios.post(CONFIG.urlApi, {
             query: mutations.subscribeFeed(url, $user, title)
         }).then(res => {
             console.log(res)
             url = ""
             title = ""
-
+            isLoading = false
             Swal.fire({
                 toast: true,
                 position: 'bottom-end',
@@ -25,9 +27,8 @@
                 icon: 'success',
                 title: 'Feed creado con exito'
             })
-
-
         }).catch(err => {
+            isLoading = false
             if (err.response.data.errors) {
                 let message = err.response.data.errors[0].message
                 Swal.fire({
@@ -63,7 +64,8 @@
             <Input name="title" type="text" bind:value={title}/>
         </FormGroup>
         <Button primary type="submit">
-            Suscribirse
+
+            {#if isLoading}Suscribiendose ...{:else}Suscribirse{/if}
         </Button>
     </form>
 </div>

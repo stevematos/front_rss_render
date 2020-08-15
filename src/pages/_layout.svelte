@@ -4,19 +4,17 @@
 </svelte:head>
 
 <script>
-    import {user} from '../store/store'
+    import {user, register} from '../store/store'
     import Login from '../components/Login.svelte'
     import Nav from "../Nav.svelte";
-
-    let path = location.pathname
-    const publicRoutes = ['/register'];
+    import Register from "../components/Register.svelte";
 
 </script>
-{#if !$user && publicRoutes.indexOf(path) !== -1}
-    <slot/>
-{:else if $user}
+{#if $user}
     <Nav/>
     <slot/>
+{:else if $register}
+    <Register/>
 {:else}
     <Login/>
 {/if}

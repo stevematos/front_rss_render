@@ -21,10 +21,10 @@
 <ul>
     {#await promise}
         Cargando...
-    {:then url_feeds}
-        {#each url_feeds as url_feed}
+    {:then rss}
+        {#each rss as rs}
             <li>
-                <a href={$url(`feed/:title?url=:url`, {'title': url_feed.title,'url':url_feed.urlRss})}>{url_feed.title}</a>
+                <a href={$url(`feed/:title?rss_id=:rss_id`, {'title': rs.title,'rss_id':rs.id})}>{rs.title}</a>
             </li>
         {/each}
     {:catch error}
