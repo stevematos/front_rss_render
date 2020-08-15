@@ -1,9 +1,12 @@
 <script>
-    import {user} from '../store/store';
+    import {user,register} from '../store/store';
     import {CONFIG, queries} from '../constants';
     import {Form, FormGroup, FormText, Input, Label, Button} from 'sveltestrap';
     import {url} from '@sveltech/routify';
     import Swal from 'sweetalert2';
+    // import { redirect } from '@sveltech/routify';
+
+    export let changeRegister;
 
     import axios from 'axios';
 
@@ -63,6 +66,11 @@
             })
         }
     };
+
+    const redirectRegister = () => {
+        register.update(n => true);
+    }
+
 </script>
 
 <style>
@@ -134,7 +142,7 @@
         <Button primary type="submit">
             {#if isLoading}Ingresando ...{:else}Ingresar 🔒{/if}
         </Button>
-        <a class="link-register" href={$url('/register')}>Crear nuevo usuario</a>
+        <a class="link-register" href="#" on:click={redirectRegister}>Crear nuevo usuario</a>
 
         {#if Object.keys(errors).length > 0}
             <ul class="errors">
@@ -143,5 +151,4 @@
                 {/each}
             </ul>
         {/if}
-    </form>
 </section>

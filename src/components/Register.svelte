@@ -1,5 +1,5 @@
 <script>
-    import {user} from '../store/store';
+    import {user,register} from '../store/store';
     import {CONFIG, mutations} from '../constants';
     import {Form, FormGroup, FormText, Input, Label, Button} from 'sveltestrap';
     import {url} from '@sveltech/routify';
@@ -48,8 +48,9 @@
                 console.log(res.data.data.CreateUser.user.id)
                 if (res.data.data.CreateUser.user.id) {
                     user.update(n => res.data.data.CreateUser.user.id);
+                    register.update(n => false)
                     welcome();
-                    $goto('/')
+                    $goto('/');
                 }
             }).catch(err => {
                 if (err.response.data.errors) {

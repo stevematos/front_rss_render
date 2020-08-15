@@ -10,7 +10,9 @@
 
     let options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
-    let date_published = new Date(published).toLocaleDateString("es-PE", options)
+    let date_published = false
+    if (published)
+        date_published = new Date(published).toLocaleDateString("es-PE", options)
 </script>
 
 <Container class="feed">
@@ -24,8 +26,12 @@
                 {#if author}
                     <h4>Autor : {author}</h4>
                 {/if}
-                <p>{@html summary}</p>
-                <p>{date_published}</p>
+                {#if summary}
+                    <p>{@html summary}</p>
+                {/if}
+                {#if date_published}
+                    <p>{date_published}</p>
+                {/if}
                 {#if link}
                     <a href={link} target="_blank">... ver más</a>
                 {/if}

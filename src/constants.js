@@ -10,12 +10,12 @@ export const queries = {
 				userId: ${user}
 			){
                 title
-                urlRss
+                id
             }
     }`,
-    feed: (urlRss) => `{
+    feed: (rssId) => `{
         feed(
-            url: "${urlRss}"
+            rssId: ${rssId}
         ) {
             title
             summary
@@ -33,7 +33,7 @@ export const mutations = {
             urlFeed: "${url}",
             userId: ${user},
             title:"${title}"){
-            idFeed
+            idRss
           }
     }`,
     createUser: (email, password) => `mutation {

@@ -7,12 +7,12 @@
 
     import {CONFIG, queries} from '../../constants';
 
-    let urlRss = new URLSearchParams(window.location.search).get('url');
+    let rssId = new URLSearchParams(window.location.search).get('rss_id');
 
     let feeds = []
 
     axios.post(CONFIG.urlApi, {
-        query: queries.feed(urlRss)
+        query: queries.feed(rssId)
     }).then(res => {
         feeds = res.data.data.feed;
     })
